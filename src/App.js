@@ -1,6 +1,8 @@
 import Todo from './component/Todo'
-
+import {useState} from 'react'
 function App() {
+
+  const [isAdnan, setIsAdnan] = useState(false);
 
   const childToParent = (data) => {
     console.log(data);
@@ -9,7 +11,8 @@ function App() {
   return (
 
     <div className="App">
-      <Todo heading="Pratham" childToParent={childToParent}></Todo>
+      <Todo heading="Adnan" childToParent={childToParent}></Todo> 
+      
       
     </div>
 
