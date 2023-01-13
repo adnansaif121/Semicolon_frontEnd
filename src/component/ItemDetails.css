@@ -1,0 +1,12 @@
+body{
+    background-color: #f5f7f7;
+}
+@media screen and (max-width: 768px) {
+    .wrapper {
+      display: none;
+    }
+    .form{
+        margin-top: 10% !important; 
+        align-items: center;
+    }
+  }
