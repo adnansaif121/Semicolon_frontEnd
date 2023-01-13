@@ -25,7 +25,7 @@ function Todo(props) {
                     <>
                         <div key={index}>
                             <h3>{item}</h3>
-                            <button >delete</button>
+                            <button>delete</button>
                         </div>
                         <div>
                         </div>

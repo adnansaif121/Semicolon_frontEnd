@@ -10,7 +10,7 @@ function App() {
 
     <div className="App">
       <Todo heading="Pratham" childToParent={childToParent}></Todo>
-
+      
     </div>
 
   );
