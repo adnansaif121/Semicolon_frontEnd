@@ -13,7 +13,7 @@ import axios from 'axios';
 export default class Transactions extends Component {
 
     componentDidMount() {
-        axios.get(`hoho.eastasia.cloudapp.azure.com:3000/`)
+        axios.get(`http://hoho.eastasia.cloudapp.azure.com:3000/transaction`)
             .then(response => {
                 const users = response.data;
                 // this.setState({ users });
@@ -25,11 +25,11 @@ export default class Transactions extends Component {
         console.log(this.state);
         let obj = {
             transId: this.state.Transaction_Id,
-            transDate: (this.state.Transaction_Date || new Date()).toISOString().slice(0, 10),
-            f_date: (this.state.Feature_Date || new Date()).toISOString().slice(0, 10),
-            f_date1: (this.state.Feature_Date1 || new Date()).toISOString().slice(0, 10),
-            f_date2: (this.state.Feature_Date2 || new Date()).toISOString().slice(0, 10),
-            f_date3: (this.state.Feature_Date3 || new Date()).toISOString().slice(0, 10),
+            transDate: (this.state.Transaction_Date || null),
+            f_date: (this.state.Feature_Date || null),
+            f_date1: (this.state.Feature_Date1 || null),
+            f_date2: (this.state.Feature_Date2 || null),
+            f_date3: (this.state.Feature_Date3 || null),
             f_value: this.state.Feature_Value,
             f_value2: this.state.Feature_Value2,
             f_value3: this.state.Feature_Value3,
@@ -41,6 +41,35 @@ export default class Transactions extends Component {
             hashd: this.state.HashDifferentiator,
         }
         console.log(obj);
+
+        //     const params = new URLSearchParams();
+// params.append('param1', 'value1');
+// params.append('param2', 'value2');
+// axios.post('/foo', params);
+
+        const params = new URLSearchParams();
+        params.append('transId', this.state.Transaction_Id);
+        params.append('transDate', this.state.Transaction_Date);
+        params.append('f_date', this.state.Feature_Date);
+        params.append('f_date1', this.state.Feature_Date1);
+        params.append('f_date2', this.state.Feature_Date2);
+        params.append('f_date3', this.state.Feature_Date3);
+        params.append('f_value', this.state.Feature_Value);
+        params.append('f_value2', this.state.Feature_Value2);
+        params.append('f_value3', this.state.Feature_Value3);
+        params.append('f_value4', this.state.Feature_Value4);
+        params.append('f_state', this.state.Feature_State);
+        params.append('c_date', this.state.Create_date);
+        params.append('m_date', this.state.Modified_date);
+        params.append('isdel', this.state.isDeleted);
+        params.append('hashd', this.state.HashDifferentiator);
+
+        axios.post(`http://hoho.eastasia.cloudapp.azure.com:3000/transaction`, params)
+            .then(res => {
+            console.log(res);
+            console.log(res.data);
+            alert("Data Uploaded Successfully");
+        })
     }
 
     render() {

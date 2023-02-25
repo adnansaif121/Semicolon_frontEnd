@@ -7,15 +7,25 @@ import {
   Label,
   Input,
   Button
-} from 'reactstrap'
+} from 'reactstrap';
+import axios from 'axios';
 
 export default class Payment extends Component {
+
+  componentDidMount() {
+    axios.get(`http://hoho.eastasia.cloudapp.azure.com:3000/payment`)
+        .then(response => {
+            const users = response.data;
+            // this.setState({ users });
+            console.log(users);
+        })
+}
 
   handleUpload = () => {
     console.log(this.state);
     let obj = {
       transId: this.state.Transaction_Id ,
-      transDate: (this.state.Transaction_Date || new Date()).toISOString().slice(0, 10),
+      transDate: (this.state.Transaction_Date||null),
       unit: (this.state.UnitOfTransaction || "USD"),
       quantity: this.state.Quantity,
       price: this.state.Price,
@@ -28,7 +38,33 @@ export default class Payment extends Component {
       hashd: this.state.HashDifferentiator,     
     }
 
+//     const params = new URLSearchParams();
+// params.append('param1', 'value1');
+// params.append('param2', 'value2');
+// axios.post('/foo', params);
+
+    const params = new URLSearchParams();
+    params.append('transId', this.state.Transaction_Id);
+    params.append('transDate', this.state.Transaction_Date);
+    params.append('unit', this.state.UnitOfTransaction);
+    params.append('quantity', this.state.Quantity);
+    params.append('price', this.state.Price);
+    params.append('currency', this.state.CurrencyOfTransaction);
+    params.append('amount', this.state.Amount);
+    params.append('mode', this.state.ModeOfTransaction);
+    params.append('c_date', this.state.Create_date);
+    params.append('m_date', this.state.Modified_date);
+    params.append('isdel', this.state.isDeleted);
+    params.append('hashd', this.state.HashDifferentiator);
+
     console.log(obj);
+    console.log(params);
+    axios.post(`http://hoho.eastasia.cloudapp.azure.com:3000/payment`, params)
+            .then(res => {
+            console.log(res);
+            console.log(res.data);
+            alert("Data Inserted Successfully");
+        })
   }
   render() {
     return (

@@ -6,7 +6,8 @@ import {
     Label,
     Input,
     Button
-} from 'reactstrap'
+} from 'reactstrap';
+import axios from 'axios';
 
 export default class Upload extends Component {
     render() {
