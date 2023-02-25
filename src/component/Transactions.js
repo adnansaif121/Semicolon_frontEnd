@@ -8,28 +8,37 @@ import {
     Input,
     Button
 } from 'reactstrap'
-
+import axios from 'axios';
 
 export default class Transactions extends Component {
 
+    componentDidMount() {
+        axios.get(`hoho.eastasia.cloudapp.azure.com:3000/`)
+            .then(response => {
+                const users = response.data;
+                // this.setState({ users });
+                console.log(users);
+            })
+    }
 
     handleUpload = () => {
         console.log(this.state);
         let obj = {
-            Transaction_Id: this.state.Transaction_Id ,
-            Transaction_Date: (this.state.Transaction_Date || new Date()).toISOString().slice(0, 10),
-            Feature_Date: (this.state.Feature_Date || new Date()).toISOString().slice(0, 10),
-            Feature_Date2: (this.state.Feature_Date2 || new Date()).toISOString().slice(0, 10),
-            Feature_Date3: (this.state.Feature_Date3 || new Date()).toISOString().slice(0, 10),
-            Feature_Value: this.state.Feature_Value,
-            Feature_Value2: this.state.Feature_Value2,
-            Feature_Value3: this.state.Feature_Value3,
-            Feature_Value4: this.state.Feature_Value4,
-            Feature_State: this.state.Feature_State,
-            Create_date: this.state.Create_date,
-            Modified_date: this.state.Modified_date,
-            isDeleted: this.state.isDeleted,
-            HashDifferentiator: this.state.HashDifferentiator,
+            transId: this.state.Transaction_Id,
+            transDate: (this.state.Transaction_Date || new Date()).toISOString().slice(0, 10),
+            f_date: (this.state.Feature_Date || new Date()).toISOString().slice(0, 10),
+            f_date1: (this.state.Feature_Date1 || new Date()).toISOString().slice(0, 10),
+            f_date2: (this.state.Feature_Date2 || new Date()).toISOString().slice(0, 10),
+            f_date3: (this.state.Feature_Date3 || new Date()).toISOString().slice(0, 10),
+            f_value: this.state.Feature_Value,
+            f_value2: this.state.Feature_Value2,
+            f_value3: this.state.Feature_Value3,
+            f_value4: this.state.Feature_Value4,
+            f_state: this.state.Feature_State,
+            c_date: this.state.Create_date,
+            m_date: this.state.Modified_date,
+            isdel: this.state.isDeleted,
+            hashd: this.state.HashDifferentiator,
         }
         console.log(obj);
     }
@@ -53,7 +62,7 @@ export default class Transactions extends Component {
                                     name="Transaction_Id"
                                     placeholder="enter id"
                                     type="text"
-                                    onChange={(e) => {this.setState({Transaction_Id: e.target.value})}}
+                                    onChange={(e) => { this.setState({ Transaction_Id: e.target.value }) }}
                                 />
                             </FormGroup>
                         </Col>
@@ -69,7 +78,7 @@ export default class Transactions extends Component {
                                     name="Transaction_Date"
                                     // placeholder="enter id"
                                     type="date"
-                                    onChange={(e) => {this.setState({Transaction_Date: e.target.value})}}
+                                    onChange={(e) => { this.setState({ Transaction_Date: e.target.value }) }}
                                 />
                             </FormGroup>
                         </Col>
@@ -86,7 +95,23 @@ export default class Transactions extends Component {
                                     name="Feature_Date"
                                     placeholder="Feature_Date"
                                     type="date"
-                                    onChange={(e) => {this.setState({Feature_Date: e.target.value})}}
+                                    onChange={(e) => { this.setState({ Feature_Date: e.target.value }) }}
+                                />
+                            </FormGroup>
+                        </Col>
+
+                        <Col>
+                            <FormGroup>
+                                <Label for="Feature_Date1">
+                                    Feature_Date1
+                                </Label>
+                                <br />
+                                <Input
+                                    id="Feature_Date1"
+                                    name="Feature_Date1"
+                                    placeholder="Feature_Date1"
+                                    type="date"
+                                    onChange={(e) => { this.setState({ Feature_Date1: e.target.value }) }}
                                 />
                             </FormGroup>
                         </Col>
@@ -102,7 +127,7 @@ export default class Transactions extends Component {
                                     name="Feature_Date2"
                                     placeholder="Feature_Date2"
                                     type="date"
-                                    onChange={(e) => {this.setState({Feature_Date2: e.target.value})}}
+                                    onChange={(e) => { this.setState({ Feature_Date2: e.target.value }) }}
                                 />
                             </FormGroup>
                         </Col>
@@ -118,7 +143,7 @@ export default class Transactions extends Component {
                                     name="Feature_Date3"
                                     placeholder="Feature_Date3"
                                     type="date"
-                                    onChange={(e) => {this.setState({Feature_Date3: e.target.value})}}
+                                    onChange={(e) => { this.setState({ Feature_Date3: e.target.value }) }}
                                 />
                             </FormGroup>
                         </Col>
@@ -137,7 +162,7 @@ export default class Transactions extends Component {
                                     name="Feature_Value"
                                     placeholder="Feature_Value"
                                     type="text"
-                                    onChange={(e) => {this.setState({Feature_Value: e.target.value})}}
+                                    onChange={(e) => { this.setState({ Feature_Value: e.target.value }) }}
                                 />
                             </FormGroup>
                         </Col>
@@ -153,7 +178,7 @@ export default class Transactions extends Component {
                                     name="Feature_Value2"
                                     placeholder="Feature_Value2"
                                     type="text"
-                                    onChange={(e) => {this.setState({Feature_Value2: e.target.value})}}
+                                    onChange={(e) => { this.setState({ Feature_Value2: e.target.value }) }}
                                 />
                             </FormGroup>
                         </Col>
@@ -169,7 +194,7 @@ export default class Transactions extends Component {
                                     name="Feature_Value3"
                                     placeholder="Feature_Value3"
                                     type="text"
-                                    onChange={(e) => {this.setState({Feature_Value3: e.target.value})}}
+                                    onChange={(e) => { this.setState({ Feature_Value3: e.target.value }) }}
                                 />
                             </FormGroup>
                         </Col>
@@ -185,7 +210,7 @@ export default class Transactions extends Component {
                                     name="Feature_Value4"
                                     placeholder="Feature_Value4"
                                     type="text"
-                                    onChange={(e) => {this.setState({Feature_Value4: e.target.value})}}
+                                    onChange={(e) => { this.setState({ Feature_Value4: e.target.value }) }}
                                 />
                             </FormGroup>
                         </Col>
@@ -203,7 +228,7 @@ export default class Transactions extends Component {
                                     name="Feature_State"
                                     placeholder="Feature_State"
                                     type="text"
-                                    onChange={(e) => {this.setState({Feature_State: e.target.value})}}
+                                    onChange={(e) => { this.setState({ Feature_State: e.target.value }) }}
                                 />
                             </FormGroup>
                         </Col>
@@ -219,7 +244,7 @@ export default class Transactions extends Component {
                                     name="Create_date"
                                     placeholder="Create_date"
                                     type="date"
-                                    onChange={(e) => {this.setState({Create_date: e.target.value})}}
+                                    onChange={(e) => { this.setState({ Create_date: e.target.value }) }}
                                 />
                             </FormGroup>
                         </Col>
@@ -235,7 +260,7 @@ export default class Transactions extends Component {
                                     name="Modified_date"
                                     placeholder="Modified_date"
                                     type="date"
-                                    onChange={(e) => {this.setState({Modified_date: e.target.value})}}
+                                    onChange={(e) => { this.setState({ Modified_date: e.target.value }) }}
                                 />
                             </FormGroup>
                         </Col>
@@ -253,7 +278,7 @@ export default class Transactions extends Component {
                                     name="isDeleted"
                                     placeholder="isDeleted"
                                     type="checkbox"
-                                    onChange={(e) => {this.setState({isDeleted: e.target.value})}}
+                                    onChange={(e) => { this.setState({ isDeleted: e.target.value }) }}
                                 />
                             </FormGroup>
                         </Col>
@@ -269,7 +294,7 @@ export default class Transactions extends Component {
                                     name="HashDifferentiator"
                                     placeholder="HashDifferentiator"
                                     type="text"
-                                    onChange={(e) => {this.setState({HashDifferentiator: e.target.value})}}
+                                    onChange={(e) => { this.setState({ HashDifferentiator: e.target.value }) }}
                                 />
                             </FormGroup>
                         </Col>

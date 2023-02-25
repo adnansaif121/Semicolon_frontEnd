@@ -14,18 +14,18 @@ export default class Payment extends Component {
   handleUpload = () => {
     console.log(this.state);
     let obj = {
-      Transaction_Id: this.state.Transaction_Id ,
-      Transaction_Date: (this.state.Transaction_Date || new Date()).toISOString().slice(0, 10),
-      UnitOfTransaction: (this.state.UnitOfTransaction || "USD"),
-      Quantity: this.state.Quantity,
-      Price: this.state.Price,
-      CurrencyOfTransaction: this.state.CurrencyOfTransaction,
-      Amount: this.state.Amount,
-      ModeOfTransaction: this.state.ModeOfTransaction,
-      Create_date: this.state.Create_date,
-      Modified_date: this.state.Modified_date,
-      isDeleted: this.state.isDeleted,
-      HashDifferentiator: this.state.HashDifferentiator,     
+      transId: this.state.Transaction_Id ,
+      transDate: (this.state.Transaction_Date || new Date()).toISOString().slice(0, 10),
+      unit: (this.state.UnitOfTransaction || "USD"),
+      quantity: this.state.Quantity,
+      price: this.state.Price,
+      currency: this.state.CurrencyOfTransaction,
+      amount: this.state.Amount,
+      mode: this.state.ModeOfTransaction,
+      c_date: this.state.Create_date,
+      m_date: this.state.Modified_date,
+      isdel: this.state.isDeleted,
+      hashd: this.state.HashDifferentiator,     
     }
 
     console.log(obj);
